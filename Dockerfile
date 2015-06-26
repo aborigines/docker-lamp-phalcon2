@@ -25,8 +25,10 @@ RUN echo '#!/bin/sh' > /usr/sbin/policy-rc.d \
 COPY sources.list /etc/apt/sources.list
 
 ## copy file source list to fast install (cache repo)
-#COPY lists /var/lib/apt/lists/
+COPY lists /var/lib/apt/lists/
 
+# update repo
+RUN apt-get update
 
 ### supervisor manage service
 RUN apt-get install -y supervisor
