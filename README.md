@@ -12,6 +12,7 @@
 
 ### docker
 ```
+cd docker-lamp
 # build image ( repository name xxxx )
 docker build -t xxxx .
 
