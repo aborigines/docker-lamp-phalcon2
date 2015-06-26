@@ -20,5 +20,5 @@ docker build -t xxxx .
 ### 81 for apache2
 ### 2222 for ssh server (no password)
 ### 33060 for ssh server (password = password ) 
-docker run -d -p 81:80 2222:22 33060:3306 -P xxxx
+docker run -d -p 81:80 -p 2222:22 -p 33060:3306 -P xxxx
 ```
