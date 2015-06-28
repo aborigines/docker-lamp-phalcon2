@@ -1,5 +1,7 @@
 # docker-lamp with phalcon2
 
+OS Base On Ubuntu 14.04 (LTS)
+
 ### lamp
 * apache2
 * mysql
