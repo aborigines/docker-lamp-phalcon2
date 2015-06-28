@@ -30,6 +30,18 @@ apt-get install -y openssh-server
 ### utility
 apt-get install -y git
 
+### phalcon2
+apt-get install -y php5-dev php5-mysql gcc libpcre3-dev
+
+cd /tmp/
+git clone --depth=1 git://github.com/phalcon/cphalcon.git
+cd cphalcon/build
+sudo ./install
+
+cp /tmp/phalcon.ini /etc/php5/mods-available/
+
+php5enmod phalcon
+
 ### apache2
 mkdir -p /var/lock/apache2 /var/run/apache2
 

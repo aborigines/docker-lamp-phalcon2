@@ -1,9 +1,10 @@
-# docker-lamp
+# docker-lamp with phalcon2
 
 ### lamp
 * apache2
 * mysql
 * php5 with library
+* php5 phalcon library
 
 ### utility
 * openssh-server
