@@ -40,11 +40,12 @@ sudo ./install
 
 cp /tmp/phalcon.ini /etc/php5/mods-available/
 
+php5enmod mcrypt
 php5enmod phalcon
 
 ### apache2
 mkdir -p /var/lock/apache2 /var/run/apache2
-
+a2enmod rewrite
 
 ###### setup  ######
 mkdir -p /var/log/supervisor
