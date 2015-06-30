@@ -1,6 +1,9 @@
 #!/bin/sh
 
+CONFIGDIR="/tmp/config"
+
 ### setup ubuntu
+cp $CONFIGDIR/policy-rc.d /usr/sbin/policy-rc.d
 chmod +x /usr/sbin/policy-rc.d
 dpkg-divert --local --rename --add /sbin/initctl
 cp -a /usr/sbin/policy-rc.d /sbin/initctl
@@ -13,7 +16,10 @@ echo 'Acquire::Languages "none";' > /etc/apt/apt.conf.d/docker-no-languages
 echo 'Acquire::GzipIndexes "true"; Acquire::CompressionTypes::Order:: "gz";' > /etc/apt/apt.conf.d/docker-gzip-indexes
 
 
+
 ### run install
+## copy source.list
+cp $CONFIGDIR/config/sources.list /etc/apt/sources.list
 apt-get update
 apt-get install -y supervisor
 
@@ -38,7 +44,7 @@ git clone --depth=1 git://github.com/phalcon/cphalcon.git
 cd cphalcon/build
 sudo ./install
 
-cp /tmp/phalcon.ini /etc/php5/mods-available/
+cp $CONFIGDIR/phalcon.ini /etc/php5/mods-available/
 
 php5enmod mcrypt
 php5enmod phalcon
@@ -48,6 +54,8 @@ mkdir -p /var/lock/apache2 /var/run/apache2
 a2enmod rewrite
 
 ###### setup  ######
+### supervisord
+cp $CONFIGDIR/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 mkdir -p /var/log/supervisor
 
 ### openssh-server (sshd)
@@ -78,4 +86,4 @@ echo "GRANT ALL ON *.* TO root@'%' IDENTIFIED BY 'root' WITH GRANT OPTION; FLUSH
 ### clean packages
 apt-get clean
 apt-get autoclean
-rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
+# rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
